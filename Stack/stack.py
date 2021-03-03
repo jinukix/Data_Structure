@@ -7,15 +7,11 @@ class Stack:
 
     def push(self, data):
         self.state.append(data)
-        print(f"Push : {data}")
 
     def pop(self):
         if not self.isEmpty():
-            value = self.state[-1]
-            self.state.pop()
-            print(f"Pop : {value}")
-            return value
-        print("Stack Is Empty")
+            return self.state.pop()
+        return -1
 
     def size(self):
         return len(self.state)

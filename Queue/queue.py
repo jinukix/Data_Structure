@@ -1,19 +1,25 @@
 class Queue:
     def __init__(self):
-        pass
+        self.clear()
 
-		  # 어떤 자료구조를 사용해 데이터를 담아야 할지 고민 해 주세요
+    def __del__(self):
+        self.clear()
 
-    def enqueue(self, person):
-        pass
+    def enQueue(self, data):
+        self.state.append(data)
 
-			# 데이터를 큐에 enqueue 하는 것을 구현 해 주세요
+    def deQueue(self):
+        if not self.isEmpty():
+            value = self.state[0]
+            del self.state[0]
+            return value
+        return -1
 
-    def dequeue(self):
-        pass
+    def size(self):
+        return len(self.state)
 
-	    # 데이터를 큐에서 dequeue 해서 그 값을 리턴하도록 구현 해 주세요
+    def isEmpty(self):
+        return not self.size()
 
-    def getFirst(self):
-        pass
-			# 큐의 가장 먼저 들어온 값을 리턴하도록 구현 해 주세요
+    def clear(self):
+        self.state = []
