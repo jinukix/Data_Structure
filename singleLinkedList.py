@@ -4,6 +4,16 @@ class Node:
         self.next = None
 
 class SingleLinkedList:
+
+    """
+    Linked List는 배열처럼 순서가 있는 자료구조입니다.
+    하지만 배열과는 여러 면에서 차이를 보입니다.
+
+    Linked List는 배열처럼 index가 있는것이 아니고 각 요소들이 다음 요소들을 가리키는 형식으로 되어 있습니다.
+    그렇다 보니 배열처럼 원하는 index에 접근해 바로 값을 가지고오는 것이 불가능합니다.
+    Linked List에서 원하는 값을 가지고오려면 무조건 첫 번째 요소부터 순서대로 확인해야 합니다.
+    """
+    
     def __init__(self):
         self.clearAllNode()
 
