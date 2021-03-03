@@ -24,7 +24,7 @@ class SingleLinkedList:
     # index번째에 Node 삽입
     def insertNode(self, index ,data):
         if index > self.getListSize() or index < 0:
-            return
+            return -1
         
         tempNode = self.__head
         prevNode = None
@@ -40,7 +40,7 @@ class SingleLinkedList:
     # index번째에 Node data 수정
     def updateNode(self, index, data):
         if index > self.getListSize() or index < 0:
-            return
+            return -1
         
         tempNode = self.__head
 
@@ -52,7 +52,7 @@ class SingleLinkedList:
     # data값을 가진 Node 1개 삭제
     def deleteNodeData(self, data):
         if not self.__head:
-            return
+            return -1
 
         tempNode = self.__head
         prevNode = None
@@ -69,11 +69,12 @@ class SingleLinkedList:
             
             prevNode = tempNode
             tempNode = tempNode.next
+        return -1
 
     # index번째에 Node 삭제
     def deleteNodeIndex(self, index):
-        if index > self.getListSize() or index < 0:
-            return
+        if index + 1 > self.getListSize() or index < 0:
+            return -1
 
         tempNode = self.__head
         prevNode = None
@@ -86,8 +87,7 @@ class SingleLinkedList:
             prevNode = tempNode
             tempNode = tempNode.next
 
-        if tempNode == self.__head:
-            prevNode.next = tempNode.next
+        prevNode.next = tempNode.next
 
     # 리스트 비우기
     def clear(self):
@@ -96,7 +96,7 @@ class SingleLinkedList:
     # index번째에 Node data 반환
     def getNodeData(self, index):
         if index > self.getListSize() or index < 0:
-            return
+            return -1
         
         tempNode = self.__head
         
@@ -105,7 +105,7 @@ class SingleLinkedList:
 
         return tempNode.data
 
-    # 리스트 길이
+    # 사이즈 반환
     def getListSize(self):
         size = 0
         tempNode = self.__head
