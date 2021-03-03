@@ -4,151 +4,128 @@ class Node:
         self.next = None
 
 class SingleLinkedList:
-
-    """
-    Linked List는 배열처럼 순서가 있는 자료구조입니다.
-    하지만 배열과는 여러 면에서 차이를 보입니다.
-
-    Linked List는 배열처럼 index가 있는것이 아니고 각 요소들이 다음 요소들을 가리키는 형식으로 되어 있습니다.
-    그렇다 보니 배열처럼 원하는 index에 접근해 바로 값을 가지고오는 것이 불가능합니다.
-    Linked List에서 원하는 값을 가지고오려면 무조건 첫 번째 요소부터 순서대로 확인해야 합니다.
-    """
-    
     def __init__(self):
-        self.clearAllNode()
+        self.__head = None
 
+    # Node 추가
     def addNode(self, data):
         newNode = Node(data)
 
-        if not self.head:
-            self.head = newNode
-        else:
-            tempNode = self.head
+        if self.__head:
+            tempNode = self.__head
 
             while tempNode.next:
                 tempNode = tempNode.next
             tempNode.next = newNode
+            return
 
+        self.__head = newNode
+
+    # index번째에 Node 삽입
     def insertNode(self, index ,data):
-        if not self.head or index > self.getListSize():
+        if index > self.getListSize() or index < 0:
             return
         
+        tempNode = self.__head
+        prevNode = None
+
+        for _ in range(index):
+            prevNode = tempNode
+            tempNode = tempNode.next
+
         newNode  = Node(data)
-        tempNode = self.head
-        prevNode = None
+        prevNode.next = newNode
+        newNode.next = tempNode
 
-        idx = 0
-
-        while tempNode:
-            if idx == index:
-                if tempNode == self.head:
-                    self.head = newNode
-                else:
-                    prevNode.next = newNode
-                
-                newNode.next = tempNode
-                break
-            else:
-                prevNode = tempNode
-                tempNode = tempNode.next
-                idx+=1
-
+    # index번째에 Node data 수정
     def updateNode(self, index, data):
-        if not self.head or index > self.getListSize():
+        if index > self.getListSize() or index < 0:
             return
         
-        tempNode = self.head
-        idx = 0 
+        tempNode = self.__head
 
-        while tempNode:
-            if idx == index:
-                tempNode.data = data
-                return
-            else:
-                idx+=1
-                tempNode = tempNode.next
+        for _ in range(index):
+            tempNode = tempNode.next
 
+        tempNode.data = data
+
+    # data값을 가진 Node 1개 삭제
     def deleteNodeData(self, data):
-        if not self.head:
+        if not self.__head:
             return
 
-        tempNode = self.head
+        tempNode = self.__head
         prevNode = None
+
+        if tempNode.data == data:
+            self.__head = tempNode.next
+            tempNode = None
+            return
 
         while tempNode:
             if tempNode.data == data:
-                if tempNode == self.head:
-                    self.head = tempNode.next
-                else:
-                    prevNode.next = tempNode.next
-                
-                tempNode = None
+                prevNode.next = tempNode.next
                 return
             
             prevNode = tempNode
             tempNode = tempNode.next
 
+    # index번째에 Node 삭제
     def deleteNodeIndex(self, index):
-        if not self.head or index > self.getListSize():
+        if index > self.getListSize() or index < 0:
             return
 
-        tempNode = self.head
+        tempNode = self.__head
         prevNode = None
-        idx = 0
 
-        while tempNode:
-            if idx == index:
-                if tempNode == self.head:
-                    self.head = tempNode.next
-                else:
-                    prevNode.next = tempNode.next
+        if not index:
+            self.__head = tempNode.next
+            return
 
-                tempNode = None
-                return
-
-            idx+=1
+        for _ in range(index):
             prevNode = tempNode
             tempNode = tempNode.next
 
+        if tempNode == self.__head:
+            prevNode.next = tempNode.next
 
-    def clearAllNode(self):
-        self.head = None
+    # 리스트 비우기
+    def clear(self):
+        self.__head = None
 
+    # index번째에 Node data 반환
     def getNodeData(self, index):
-        if not self.head or index > self.getListSize():
+        if index > self.getListSize() or index < 0:
             return
         
-        tempNode = self.head
-        idx = 0 
+        tempNode = self.__head
+        
+        for _ in range(index):
+            tempNode = tempNode.next
+
+        return tempNode.data
+
+    # 리스트 길이
+    def getListSize(self):
+        size = 0
+        tempNode = self.__head
 
         while tempNode:
-            if idx == index:
-                return tempNode.data
-            else:
-                idx+=1
-                tempNode = tempNode.next
+            size += 1
+            tempNode = tempNode.next
 
-    def getListSize(self):
-        idx = 0
-
-        if self.head:
-            tempNode = self.head
-
-            while tempNode:
-                idx +=  1
-                tempNode = tempNode.next
-
-        return idx
-        
+        return size
+    
+    # 비어있는지 확인
     def isEmpty(self):
         return not self.getListSize()
 
+    # 전체 출력
     def printAll(self):
-        if self.head:
-            idx = 0
-            tempNode = self.head
+        idx = 0
+        tempNode = self.__head
 
-            while tempNode:
-                idx +=  1
-                print(tempNode.data)
-                tempNode = tempNode.next
+        while tempNode:
+            idx +=  1
+            print(tempNode.data)
+            tempNode = tempNode.next
