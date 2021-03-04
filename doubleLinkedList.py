@@ -6,6 +6,10 @@ class Node:
 
 class DoubleLinkedList:
     def __init__(self):
+        self.initialize()
+
+    # 초기화
+    def initialize(self):
         self.__head = None
         self.__tail = None
 
@@ -13,7 +17,7 @@ class DoubleLinkedList:
     def push_Back(self, data):
         newNode = Node(data)
 
-        if not self.getListSize():
+        if self.isEmpty():
             self.__head = newNode
             self.__tail = newNode
             return
@@ -55,11 +59,6 @@ class DoubleLinkedList:
     def isEmpty(self):
         return not self.__head
 
-    # 초기화
-    def clear(self):
-        self.__head = None
-        self.__tail = None
-
     # index번째에 Node삽입
     def insert(self, index, data):
         size = self.getListSize()
@@ -92,7 +91,8 @@ class DoubleLinkedList:
     # index번째 Node 삭제
     def deleteNode(self, index):
         size = self.getListSize()
-        if index + 1 > size or index < 0: # insert의 경우 index가 getListSize()만큼 들어와도 삽입이 되지만 삭제의 경우에는 불가능
+        # insert의 경우 index가 getListSize()만큼 들어와도 삽입이 되지만 delete의 경우에는 불가능
+        if index + 1 > size or index < 0: 
             return -1
 
         if index == size - 1:
