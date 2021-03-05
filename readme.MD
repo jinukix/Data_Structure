@@ -6,5 +6,5 @@ Date Structure
 - Queue
 - SingleLinkedList
 - DoubleLinkedList
-- circularList
+- CircularList
 - HashMap
