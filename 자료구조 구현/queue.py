@@ -1,5 +1,9 @@
 class Queue:
     def __init__(self):
+        self.initialize()
+
+    # queue 초기화
+    def initialize(self):
         self.state = []
 
     # 데이터 삽입
@@ -21,7 +25,4 @@ class Queue:
     # 비어있는지 확인
     def isEmpty(self):
         return not self.size()
-
-    # queue 비우기
-    def clear(self):
-        self.state = []
+        

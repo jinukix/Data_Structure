@@ -1,5 +1,9 @@
 class Stack:
     def __init__(self):
+        self.initialize()
+
+    # stack 비우기
+    def initialize(self):
         self.state = []
 
     # 데이터 삽입
@@ -19,7 +23,3 @@ class Stack:
     # 비어있는지 확인
     def isEmpty(self):
         return not self.size()
-
-    # stack 비우기
-    def clear(self):
-        self.state = []

@@ -15,15 +15,16 @@ class SingleLinkedList:
     def addNode(self, data):
         newNode = Node(data)
 
-        if not self.isEmpty():
-            tempNode = self.__head
+        if self.isEmpty():
+            self.__head = newNode
+            return
+            
+        tempNode = self.__head
 
-            while tempNode.next:
-                tempNode = tempNode.next
+        while tempNode.next:
+            tempNode = tempNode.next
 
-            tempNode.next = newNode
-
-        self.__head = newNode
+        tempNode.next = newNode
 
     # index번째에 Node 삽입
     def insertNode(self, index ,data):
@@ -130,3 +131,4 @@ class SingleLinkedList:
             idx +=  1
             print(tempNode.data)
             tempNode = tempNode.next
+            

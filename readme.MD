@@ -8,3 +8,5 @@ Date Structure
 - DoubleLinkedList
 - CircularList
 - HashMap
+- BinaryTress
+- Graph

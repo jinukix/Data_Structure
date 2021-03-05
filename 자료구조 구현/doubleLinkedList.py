@@ -131,3 +131,4 @@ class DoubleLinkedList:
         while tempNode:
             print(tempNode.data)
             tempNode = tempNode.next
+            
