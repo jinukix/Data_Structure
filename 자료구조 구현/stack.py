@@ -1,25 +1,75 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 class Stack:
     def __init__(self):
         self.initialize()
 
-    # stack 비우기
+    # stack 초기화
     def initialize(self):
-        self.state = []
+        self.head = None
+        self.tail = None
+        self.count = 0
 
     # 데이터 삽입
     def push(self, data):
-        self.state.append(data)
+        newNode = Node(data)
 
-    # 데이터 반환
+        if self.isEmpty():
+            self.head = newNode
+        else:
+            self.tail.next = newNode
+
+        self.tail = newNode
+        self.count+=1
+
+    # 데이터 추출
     def pop(self):
         if self.isEmpty():
             return -1
-        return self.state.pop()
+        
+        if self.head == self.tail:
+            value = self.tail.data
+            self.head = None
+            self.tail = None
+            self.count = 0
 
-    # stack 길이
-    def size(self):
-        return len(self.state)
+        tempNode = self.head
+
+        while tempNode.next != self.tail:
+            tempNode = tempNode.next
+
+        value = self.tail.data
+        self.tail = tempNode
+        self.tail.next = None
+        self.count -= 1
+
+        return value
+
+    # 맨 앞 Node 데이터 반환
+    def front(self):
+        if self.isEmpty():
+            return -1
+        
+        return self.head.data
+
+    # 마지막 Node 데이터 반환
+    def back(self):
+        if self.isEmpty():
+            return -1
+        
+        return self.tail.data
 
     # 비어있는지 확인
     def isEmpty(self):
-        return not self.size()
+        return not bool(self.count)
+
+    # 전체 출력
+    def printAll(self):
+        temp = self.head
+
+        while temp:
+            print(temp.data)
+            temp = temp.next
