@@ -10,3 +10,6 @@ Date Structure
 - HashMap
 - BinaryTress
 - Graph
+
+- PrioorityQueue
+- Astar
