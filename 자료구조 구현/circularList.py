@@ -71,7 +71,7 @@ class CircularList:
     # index번째 Node 삭제
     def deleteNodeIndex(self, index):
         size = self.getListSize()
-        if index > size or index < 0:
+        if index >= size or index < 0:
             return -1
 
         tempNode = self.__tail.next

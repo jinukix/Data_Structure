@@ -1,4 +1,3 @@
-
 TABLE_SIZE = 10
 
 class Node:
